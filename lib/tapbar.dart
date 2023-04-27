@@ -78,16 +78,16 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
                     ),
                   ),
                   Container(
-                    color: Colors.yellow,
+                    color: Colors.white,
                     alignment: Alignment.center,
                     child: TableCalendar(
-                        focusedDay: DateTime.parse("2020-08-05"),
-                        firstDay: DateTime.parse("2020-08-01"),
-                        lastDay: DateTime.parse("2020-08-31"),
+                        focusedDay: DateTime.now(),
+                        firstDay: DateTime(2020,01,01),
+                        lastDay: DateTime(2030,12,31),
                         headerStyle: const HeaderStyle(
                           formatButtonVisible: false,
-                          leftChevronVisible: false,
-                          rightChevronVisible: false,
+                          leftChevronVisible: true,
+                          rightChevronVisible: true,
                         ),
                       ),
                     ),

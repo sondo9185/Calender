@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';    //주석 추가
+import 'package:geolocator/geolocator.dart';
 
 class TapBar extends StatefulWidget {
   const TapBar({Key? key}) : super(key: key);
@@ -11,6 +12,11 @@ class TapBar extends StatefulWidget {
 class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
   late TabController _tabController;
 
+  Future<void> getLocation() async {
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    print(position);
+  }
+
   @override
   void initState() {
     _tabController = TabController(
@@ -18,6 +24,11 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
     );
     super.initState();
   }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -68,12 +79,17 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
                 controller: _tabController,
                 children: [
                   Container(
-                    color: Colors.yellow,
+                    color: Colors.white,
                     alignment: Alignment.center,
-                    child: const Text(
-                      '날씨 화면',
-                      style: TextStyle(
-                        fontSize: 30,
+                    child: ElevatedButton(
+                      onPressed: (){
+                        getLocation();
+                      },
+                      child: const Text(
+                        '날씨 화면',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),

@@ -13,6 +13,7 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
   late TabController _tabController;
 
   Future<void> getLocation() async {
+    LocationPermission permission = await Geolocator.requestPermission();
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     print(position);
   }

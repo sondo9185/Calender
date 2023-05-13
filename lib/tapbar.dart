@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';    //주석 추가
-import 'package:geolocator/geolocator.dart';
+import 'package:table_calendar/table_calendar.dart'; 
+import 'package:calender/data/my_location.dart'; 
+import 'package:calender/data/network.dart';
+const apikey = '86eb3b55e4cdca17b4a91356e3e13496';  //주석 추가
 
 class TapBar extends StatefulWidget {
   const TapBar({Key? key}) : super(key: key);
@@ -12,11 +14,28 @@ class TapBar extends StatefulWidget {
 class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
   late TabController _tabController;
 
+  late double latitude3;
+  late double longitude3;
+
   Future<void> getLocation() async {
-    LocationPermission permission = await Geolocator.requestPermission();
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    print(position);
+    MyLocation myLocation = MyLocation();
+    await myLocation.getMyCurrentLocation();
+    latitude3 = myLocation.latitude2;
+    longitude3 = myLocation.longitude2;
+    print(latitude3);
+    print(longitude3);
+
+    Network network = Network('https://api.openweathermap.org/data/2.5/weather?lat=$latitude3&lon=$longitude3&appid=$apikey');
+    var weatherData = network.getJsonData();
+    print(weatherData);
   }
+
+  // void fetchData() async{
+    
+  //     var myJson = parsingData['weather'][0]['description'];
+  //     print(myJson);
+  //   }
+  // }
 
   @override
   void initState() {
@@ -24,6 +43,7 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
       length: 3, vsync: this,
     );
     super.initState();
+    getLocation();
   }
 
   // @override
@@ -43,8 +63,7 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
         body: Column(
           children: [
             Container(
-              decoration: BoxDecoration(
-                border: Border.all(),
+              decoration: const BoxDecoration(
               ),
               child: TabBar(
                 tabs: [
@@ -83,10 +102,8 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
                     color: Colors.white,
                     alignment: Alignment.center,
                     child: ElevatedButton(
-                      onPressed: (){
-                        getLocation();
-                      },
-                      child: const Text(
+                      onPressed: null,
+                      child: Text(
                         '날씨 화면',
                         style: TextStyle(
                           fontSize: 20,

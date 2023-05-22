@@ -36,13 +36,6 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
               ),
               child: TabBar(
                 tabs: [
-                  // Container(
-                  //   height: 50,
-                  //   alignment: Alignment.center,
-                  //   child: const Text(
-                  //     '날씨',
-                  //   ),
-                  // ),
                   Container(
                     height: 50,
                     alignment: Alignment.center,
@@ -67,16 +60,6 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  // Container(
-                  //   color: Colors.yellow,
-                  //   alignment: Alignment.center,
-                  //   child: const Text(
-                  //     '날씨 화면',
-                  //     style: TextStyle(
-                  //       fontSize: 30,
-                  //     ),
-                  //   ),
-                  // ),
                   Container(
                     color: Colors.white,
                     alignment: Alignment.center,
@@ -94,12 +77,12 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
                   Container(
                     color: Colors.yellow,
                     alignment: Alignment.center,
-                    child: const Text(
-                      '일정 관리 화면',
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),
-                    ),
+                    child: ListView(
+                      padding: const EdgeInsets.all(8),
+                      children: <Widget>[
+                        
+                      ],
+                    )
                   ),
                 ],
               ),

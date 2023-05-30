@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';    //주석 추가
+import 'package:calender/schedule_bottom_sheet.dart';
 
 class TapBar extends StatefulWidget {
+
+  // final OnDaySelected onDaySelected;
+  // final DateTime selectedDate;
+
+  // TapBar({
+  //   required this.onDaySelected,
+  //   required this.selectedDate,
+  // });
+
   const TapBar({Key? key}) : super(key: key);
 
   @override
@@ -23,6 +33,19 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.blue,
+          onPressed: () {
+            showModalBottomSheet(
+              context: context, 
+              builder: (_) => ScheduleBottomSheet(),
+              isDismissible: true,
+            );
+          },
+          child: const Icon(
+            Icons.add,
+          ),
+        ),
         appBar : AppBar(
           title: const Text(
             '일정 관리'
@@ -65,30 +88,76 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
                     alignment: Alignment.center,
                     child: TableCalendar(
                         focusedDay: DateTime.now(),
-                        firstDay: DateTime(2020,01,01),
-                        lastDay: DateTime(2030,12,31),
+                        firstDay: DateTime(2000,01,01),
+                        lastDay: DateTime(2100,12,31),
                         headerStyle: const HeaderStyle(
                           formatButtonVisible: false,
                           leftChevronVisible: true,
                           rightChevronVisible: true,
                         ),
+                        // onDaySelected: onDaySelected,
+                        // selectedDayPredicate: (date) => 
+                        //   date.year == selectedDate.year && 
+                        //   date.month == selectedDate.month && 
+                        //   date.day == selectedDate.day,
                       ),
                     ),
                   Container(
-                    color: Colors.yellow,
-                    alignment: Alignment.center,
-                    child: ListView(
-                      padding: const EdgeInsets.all(8),
-                      children: <Widget>[
-                        
-                      ],
-                    )
-                  ),
+                      
+                    // color: Colors.white,
+                    // alignment: Alignment.center,
+                    // child: ListView.separated(
+                    //   itemCount: 10,
+                    //   itemBuilder: (BuildContext context, int index) {
+                    //     return ListTile(
+                    //       onTap: () {},
+                    //       title: Container(
+                    //         alignment: Alignment.centerLeft,
+                    //         height: 50,
+                    //         child: const Text(
+                    //           'Entry A',
+                    //           textAlign: TextAlign.start,
+                    //         ),
+                    //       ),
+                    //     );
+                    //   },
+                    //   separatorBuilder: (BuildContext context, int index) { return Divider(thickness: 1); },
+                    ),
+                  
+                    // child: ListView(
+                    //   padding: const EdgeInsets.all(8),
+                    //   children: <Widget>[
+                        // Container(
+                        //   height: 50,
+                        //   color: Colors.amber[600],
+                        //   alignment: Alignment.centerLeft,
+                        //   //padding: Border.all(color: Colors.black),
+                        //   child: Text('Entry A')
+                        // ),
+                        // const Divider(),
+                        // Container(
+                        //   height: 50,
+                        //   color: Colors.amber[600],
+                        //   alignment: Alignment.centerLeft,
+                        //   //padding: Border.all(color: Colors.black),
+                        //   child: Text('Entry B')
+                        // ),
+                        // Container(
+                        //   height: 50,
+                        //   color: Colors.amber[600],
+                        //   alignment: Alignment.centerLeft,
+                        //   //padding: Border.all(color: Colors.black),
+                        //   child: Text('Entry C')
+                        // ),
+                        // const Divider()
+                    //   ],
+                    // )
+                  
                 ],
               ),
             ),
           ],
-        ),
+        )
       )
     );
   }

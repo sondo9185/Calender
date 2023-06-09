@@ -39,7 +39,8 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
             showModalBottomSheet(
               context: context, 
               builder: (_) => ScheduleBottomSheet(),
-              isDismissible: true,
+              //isDismissible: true,
+              isScrollControlled: true,
             );
           },
           child: const Icon(
@@ -87,6 +88,7 @@ class _TapBarState extends State<TapBar> with TickerProviderStateMixin{
                     color: Colors.white,
                     alignment: Alignment.center,
                     child: TableCalendar(
+                      locale: 'ko_kr',
                         focusedDay: DateTime.now(),
                         firstDay: DateTime(2000,01,01),
                         lastDay: DateTime(2100,12,31),

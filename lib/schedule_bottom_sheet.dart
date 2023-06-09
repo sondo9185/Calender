@@ -11,19 +11,20 @@ class ScheduleBottomSheet extends StatefulWidget {
 class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
   @override
   Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
     return SafeArea(
       child: Container(
-        height: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2 + bottomInset,
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
+          padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: bottomInset),
           child: Column(
             children: [
               const Row(
                 children: [
                   Expanded(
                     child: CustomTextField(
-                      label: '날짜',
+                      label: '날짜(예:20230531)',
                       isTime: true,
                       ),
                     ),
@@ -36,7 +37,7 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
                     ),
                 ],
               ),
-              const SizedBox(height: 8.0),
+              const SizedBox(height: 1.0),
               const Expanded(
                 child: CustomTextField(
                   label: '내용', 

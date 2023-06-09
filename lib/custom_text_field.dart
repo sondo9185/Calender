@@ -19,7 +19,7 @@ class CustomTextField extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-            color: Colors.yellow,
+            color: Colors.black,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -36,7 +36,7 @@ class CustomTextField extends StatelessWidget {
                 border: InputBorder.none,
                 filled: true,
                 fillColor: Colors.grey[300],
-                suffixText: isTime ? '시' : null,
+                //suffixText: isTime ? '' : null,
               ),
           ),
         ),
